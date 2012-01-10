@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using PaintingWithFire.Data.Models;
 
 namespace PaintingWithFire.Data.Services.Imaging
 {
