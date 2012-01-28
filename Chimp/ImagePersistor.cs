@@ -1,14 +1,15 @@
 ﻿using System.Drawing;
 using System.IO;
+using Chimp.Configuration;
+using Chimp.Models;
 
-
-namespace PaintingWithFire.Data.Services.Imaging
+namespace Chimp
 {
-    public interface ImagePersistor
+    public abstract class ImagePersistor
     {
-        Image ImageFrom(Stream stream);
+        public abstract Image ImageFrom(Stream stream);
 
-        void SavePicture(Image image);
-        void DeletePicture(string filename);
+        public abstract ImageDetails Save(Image image, DirectoryConfiguration directory);
+        public abstract void Delete(string filename);
     }
 }

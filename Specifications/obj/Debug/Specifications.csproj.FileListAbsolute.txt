@@ -1,0 +1,12 @@
+C:\_NET\Projects\Chimp\Specifications\obj\Debug\ResolveAssemblyReference.cache
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\Specifications.dll
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\Specifications.pdb
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\Castle.Core.dll
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\Chimp.dll
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\FakeItEasy.dll
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\Machine.Specifications.dll
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\Chimp.pdb
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\Castle.Core.xml
+C:\_NET\Projects\Chimp\Specifications\bin\Debug\FakeItEasy.xml
+C:\_NET\Projects\Chimp\Specifications\obj\Debug\Specifications.dll
+C:\_NET\Projects\Chimp\Specifications\obj\Debug\Specifications.pdb

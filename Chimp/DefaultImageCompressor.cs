@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Drawing.Imaging;
+using Chimp.Services;
 
-namespace PaintingWithFire.Data.Services.Imaging
+namespace Chimp
 {
     public class WebImageCompressor : ImageCompression
     {

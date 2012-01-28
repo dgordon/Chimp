@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace PaintingWithFire.Data.Services.Imaging
+namespace Chimp.Services
 {
     public interface ImageTransformer
     {

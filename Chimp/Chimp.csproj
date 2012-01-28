@@ -41,13 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageCompression.cs" />
+    <Compile Include="Models\ImageDetails.cs" />
+    <Compile Include="Services\ImageCompression.cs" />
+    <Compile Include="Configuration\DirectoryConfiguration.cs" />
     <Compile Include="ImagePersistor.cs" />
-    <Compile Include="ImageTransformer.cs" />
+    <Compile Include="Services\ImageTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebImageCompressor.cs" />
-    <Compile Include="WebImagePersistor.cs" />
-    <Compile Include="WebImageTransformer.cs" />
+    <Compile Include="DefaultImageCompressor.cs" />
+    <Compile Include="DefaultImagePersistor.cs" />
+    <Compile Include="DefaultImageTransformer.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

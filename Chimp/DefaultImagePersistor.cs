@@ -2,10 +2,13 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using Chimp.Services;
+using Chimp.Configuration;
+using Chimp.Models;
 
-namespace PaintingWithFire.Data.Services.Imaging
+namespace Chimp
 {
-    public class WebImagePersistor : ImagePersistor
+    public class DefaultImagePersistor : ImagePersistor
     {
         //readonly ApplicationConfiguration _configuration;
         //readonly ImageCompression _imageCompression;
@@ -20,20 +23,6 @@ namespace PaintingWithFire.Data.Services.Imaging
         //    _configuration = configuration;
         //    _imageCompression = imageCompression;
         //    _imageTransformer = imageTransformer;
-        //}
-        //public Image GenerateImageFrom(Stream stream)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public FileSummary SavePotteryPicture(Image image)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void DeletePotteryPicture(string filename)
-        //{
-        //    throw new NotImplementedException();
         //}
 
         //public FileSummary Save(Image image)
@@ -55,5 +44,19 @@ namespace PaintingWithFire.Data.Services.Imaging
         //{
         //    throw new NotImplementedException();
         //}
+        public override Image ImageFrom(Stream stream)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ImageDetails Save(Image image, DirectoryConfiguration directory)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete(string filename)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

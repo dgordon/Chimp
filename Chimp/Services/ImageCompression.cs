@@ -1,6 +1,6 @@
 using System.Drawing.Imaging;
 
-namespace PaintingWithFire.Data.Services.Imaging
+namespace Chimp.Services
 {
     public interface ImageCompression
     {

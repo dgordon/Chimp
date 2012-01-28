@@ -2,8 +2,9 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using Chimp.Services;
 
-namespace PaintingWithFire.Data.Services.Imaging
+namespace Chimp
 {
     public class WebImageTransformer:ImageTransformer
     {
@@ -59,6 +60,7 @@ namespace PaintingWithFire.Data.Services.Imaging
             grPhoto.Dispose();
             return bmPhoto;
         }
+
         public Image ScaleTo(Image image, int width, int height)
         {
             var ratio = Math.Min((float)width / (float)image.Width, (float)height / (float)image.Height);
