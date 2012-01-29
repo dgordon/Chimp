@@ -2,9 +2,9 @@
 using System.Drawing.Imaging;
 using Chimp.Services;
 
-namespace Chimp
+namespace Chimp.Services
 {
-    public class WebImageCompressor : ImageCompression
+    public class DefaultImageCompressor : ImageCompression
     {
         //http://msdn.microsoft.com/en-us/library/bb882583.aspx#Y296
         public EncoderParameters GetImageCompressionParams(long compression)

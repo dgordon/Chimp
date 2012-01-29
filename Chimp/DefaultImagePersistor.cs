@@ -54,7 +54,7 @@ namespace Chimp
             throw new NotImplementedException();
         }
 
-        public override void Delete(string filename)
+        public override void Delete(ImageDetails imageDetails)
         {
             throw new NotImplementedException();
         }

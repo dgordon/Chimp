@@ -4,9 +4,9 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using Chimp.Services;
 
-namespace Chimp
+namespace Chimp.Services
 {
-    public class WebImageTransformer:ImageTransformer
+    public class DefaultImageTransformer:ImageTransformer
     {
         public Image ResizeTo(Image image, int width, int height)
         {
@@ -60,7 +60,6 @@ namespace Chimp
             grPhoto.Dispose();
             return bmPhoto;
         }
-
         public Image ScaleTo(Image image, int width, int height)
         {
             var ratio = Math.Min((float)width / (float)image.Width, (float)height / (float)image.Height);
@@ -80,6 +79,10 @@ namespace Chimp
 
             grPhoto.Dispose();
             return bmPhoto;
+        }
+        public Image Crop(Image image, int x, int y, int width, int height)
+        {
+            return null;
         }
     }
 }

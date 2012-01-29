@@ -47,9 +47,9 @@
     <Compile Include="ImagePersistor.cs" />
     <Compile Include="Services\ImageTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DefaultImageCompressor.cs" />
+    <Compile Include="Services\DefaultImageCompressor.cs" />
     <Compile Include="DefaultImagePersistor.cs" />
-    <Compile Include="DefaultImageTransformer.cs" />
+    <Compile Include="Services\DefaultImageTransformer.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

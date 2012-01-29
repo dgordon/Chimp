@@ -6,5 +6,6 @@ namespace Chimp.Services
     {
         Image ResizeTo(Image image, int width, int height);
         Image ScaleTo(Image image, int width, int height);
+        Image Crop(Image image, int x, int y, int width, int height);
     }
 }

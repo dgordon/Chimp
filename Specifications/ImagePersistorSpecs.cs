@@ -12,7 +12,24 @@ using Chimp.Services;
 
 namespace Specifications.Services
 {
-    public class When_saving_picture
+    public class When_creating_image_from_stream
+    {
+        Establish context = () => 
+                                { 
+                                    
+                                };
+
+        Because of = () => _image = _imagePersistor.ImageFrom(_stream);
+
+        It should_return_image = () => _image.ShouldNotBeNull();
+
+        Cleanup by_deleting_the_image = () => { };
+
+        static Stream _stream;
+        static ImagePersistor _imagePersistor;
+        static Image _image;
+    }
+    public class When_saving_image
     {
         Establish context = () =>
                                 {
@@ -43,38 +60,56 @@ namespace Specifications.Services
 
                                     //_imagePersistor = new WebImagePersistor(
                                     //    _configuration,_imageCompression,_imageTransformer);
+                                    _imagePersistor = A.Fake<ImagePersistor>();
+                                    _imageCompression = A.Fake<ImageCompression>();
                                 };
 
         Because of = () => _details = _imagePersistor.Save(_image, _directory);
 
-        //It should_get_application_root_directory = () => 
-        //                        A.CallTo(() => _configuration.ApplicationRootDirectory)
-        //                            .MustHaveHappened(Repeated.Exactly.Once);
-        //It should_get_path_for_blog_images = () => 
-        //                        A.CallTo(() => _configuration.BlogImagePath)
-        //                             .MustHaveHappened(Repeated.Exactly.Once);
-        //It should_scale_the_image = () =>
-        //                        A.CallTo(() => _imageTransformer.ScaleTo(A<Image>._, A<int>._, A<int>._))
-        //                            .MustHaveHappened(Repeated.Exactly.Once);
-        //It should_create_image_encode_parameters = () =>
-        //                        A.CallTo(() => _imageCompression.GetImageCompressionParams(A<long>._))
-        //                                .MustHaveHappened(Repeated.Exactly.Once);
-        //It should_get_image_codec = () =>
-        //                        A.CallTo(() => _imageCompression.GetImageCodec(A<ImageFormat>._))
-        //                                .MustHaveHappened(Repeated.Exactly.Once);
-        //It should_have_saved_the_image = () => File.Exists(_localPath + "/bin/" + _fileSummary.Name);
+        It should_get_directory_path_for_image = () =>
+                                A.CallTo(() => _directory.Path)
+                                    .MustHaveHappened(Repeated.Exactly.Once);
+        
+        It should_create_image_encode_parameters = () =>
+                                A.CallTo(() => _imageCompression.GetImageCompressionParams(A<long>._))
+                                        .MustHaveHappened(Repeated.Exactly.Once);
+        
+        It should_get_image_codec = () =>
+                                A.CallTo(() => _imageCompression.GetImageCodec(A<ImageFormat>._))
+                                        .MustHaveHappened(Repeated.Exactly.Once);
 
-        //Cleanup by_deleting_the_saved_image = () =>
-        //                         {
-        //                             var binDirectory = new DirectoryInfo(_localPath + "/bin/");
-        //                             foreach (var file in binDirectory.GetFiles("*.jpeg", SearchOption.TopDirectoryOnly))
-        //                                 file.Delete();
-        //                         };
+        It should_have_saved_the_image = () => File.Exists(_localPath + "/bin/" + _details.Name);
 
+        It should_return_image_details = () => _details.ShouldNotBeNull();
+
+        Cleanup by_deleting_the_saved_image = () =>
+                                 {
+                                     var binDirectory = new DirectoryInfo(_localPath + "/bin/");
+                                     foreach (var file in binDirectory.GetFiles("*.jpeg", SearchOption.TopDirectoryOnly))
+                                         file.Delete();
+                                 };
+
+        static string _localPath;
         static DirectoryConfiguration _directory;
         static ImagePersistor _imagePersistor;
         static ImageCompression _imageCompression;
         static ImageTransformer _imageTransformer;
+        static Image _image;
+        static ImageDetails _details;
+    }
+    public class When_deleting_image
+    {
+        Establish context = () => { };
+
+        Because of = () => _imagePersistor.Delete(_details);
+
+        It should_get_file_directory_location = () =>
+            A.CallTo(() => _directory.Path).MustHaveHappened(Repeated.Exactly.Once);
+
+        It should_have_removed_the_image_from_the_file_system = () => {};
+
+        static DirectoryConfiguration _directory;
+        static ImagePersistor _imagePersistor;
         static Image _image;
         static ImageDetails _details;
     }
