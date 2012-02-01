@@ -10,51 +10,39 @@ namespace Chimp
 {
     public class DefaultImagePersistor : ImagePersistor
     {
-        //readonly ApplicationConfiguration _configuration;
-        //readonly ImageCompression _imageCompression;
-        //readonly ImageTransformer _imageTransformer;
+        readonly ImageCompression _imageCompression;
 
-        //public WebImagePersistor(
-        //    ApplicationConfiguration configuration,
-        //    ImageCompression imageCompression,
-        //    ImageTransformer imageTransformer
-        //    )
-        //{
-        //    _configuration = configuration;
-        //    _imageCompression = imageCompression;
-        //    _imageTransformer = imageTransformer;
-        //}
-
-        //public FileSummary Save(Image image)
-        //{
-        //    var filename = string.Format("{0}.jpeg", Guid.NewGuid());
-        //    string blogImageFilePath = Path
-        //        .Combine(_configuration.ApplicationRootDirectory, _configuration.BlogImagePath, filename);
-            
-        //    var encoderParams = _imageCompression.GetImageCompressionParams(60L);
-        //    var encoder = _imageCompression.GetImageCodec(ImageFormat.Jpeg);
-            
-        //    image = _imageTransformer.ScaleTo(image, 300, 350);
-
-        //    image.Save(blogImageFilePath, encoder, encoderParams);
-        //    return new FileSummary() { Name = filename };
-        //}
-
-        //public void DeleteBlogPicture(string filename)
-        //{
-        //    throw new NotImplementedException();
-        //}
-        public override Image ImageFrom(Stream stream)
+        public DefaultImagePersistor(ImageCompression imageCompression)
         {
-            throw new NotImplementedException();
+            if(imageCompression==null)
+                throw new ArgumentNullException();
+
+            _imageCompression = imageCompression;
         }
 
-        public override ImageDetails Save(Image image, DirectoryConfiguration directory)
+        public Image ImageFrom(Stream stream)
         {
-            throw new NotImplementedException();
+            return Image.FromStream(stream);
         }
 
-        public override void Delete(ImageDetails imageDetails)
+        public ImageDetails Save(Image image, string filename, DirectoryConfiguration directory)
+        {
+            //todo: refactor
+            var imageFormat = ImageFormat.Jpeg;
+            filename = string.Format("{0}.{1}", filename, imageFormat.ToString().ToLower());
+
+            var encoderParams = _imageCompression.GetImageCompressionParams(60L);
+            var encoder = _imageCompression.GetImageCodec(imageFormat);
+
+            image.Save(Path.Combine(directory.Path, filename), encoder, encoderParams);
+            
+            return new ImageDetails() 
+                            { 
+                                Name = filename 
+                            };
+        }
+
+        public void Delete(ImageDetails imageDetails)
         {
             throw new NotImplementedException();
         }

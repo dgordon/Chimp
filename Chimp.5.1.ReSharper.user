@@ -1,0 +1,123 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="static" priority="1" />
+      <Item value="DirectoryConfiguration`0" priority="1" />
+      <Item value="_directory" priority="3" />
+      <Item value="A`0" priority="1" />
+      <Item value="var" priority="2" />
+      <Item value="localPath" priority="1" />
+      <Item value="directory" priority="0" />
+      <Item value="ImageDetails`0" priority="0" />
+      <Item value="abstract" priority="0" />
+      <Item value="ctor" priority="1" />
+      <Item value="override" priority="1" />
+      <Item value="long" priority="3" />
+      <Item value="ImageFormat`0" priority="2" />
+      <Item value="private" priority="3" />
+      <Item value="base" priority="1" />
+      <Item value="compression" priority="1" />
+      <Item value="imageFormat" priority="4" />
+      <Item value="_compression" priority="0" />
+      <Item value="_imageFormat" priority="0" />
+      <Item value="protected" priority="0" />
+      <Item value="ImagePersistor`0" priority="0" />
+      <Item value="imageCompression" priority="5" />
+      <Item value="if" priority="1" />
+      <Item value="throw" priority="1" />
+      <Item value="new" priority="2" />
+      <Item value="ArgumentNullException" priority="1" />
+      <Item value="ImageCompression`0" priority="3" />
+      <Item value="public" priority="0" />
+      <Item value="DefaultImageCompressor`0" priority="0" />
+      <Item value="readonly" priority="0" />
+      <Item value="_imageCompression" priority="0" />
+      <Item value="ImageFormatConverter`0" priority="0" />
+      <Item value="compressionLevel" priority="0" />
+      <Item value="Image`0" priority="0" />
+      <Item value="string" priority="1" />
+      <Item value="filename" priority="0" />
+      <Item value="MemoryStream`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@FakeItEasy.A">
+      <Item value="CallTo`1" priority="0" />
+      <Item value="Fake`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Chimp.Configuration.DirectoryConfiguration">
+      <Item value="Path" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FakeItEasy.Configuration.IReturnValueArgumentValidationConfiguration`1">
+      <Item value="Returns`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Drawing.Imaging.Encoder">
+      <Item value="Quality" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Drawing.Imaging.ImageFormat">
+      <Item value="Jpeg" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Imaging.ImageFormat">
+      <Item value="ToString`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="ToLower`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImageTransformerSpecs.cs" caret="0" fromTop="0" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:ImageCompression.cs" caret="116" fromTop="6" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:DefaultImageCompressor.cs" caret="452" fromTop="11" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:ImagePersistor.cs" caret="251" fromTop="10" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="613" fromTop="9" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="1388" fromTop="18" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:DefaultImageCompressor.cs" caret="49" fromTop="1" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="1167" fromTop="18" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:ImageCompression.cs" caret="106" fromTop="11" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:DefaultImageCompressor.cs" caret="147" fromTop="8" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:ImagePersistor.cs" caret="195" fromTop="21" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="4357" fromTop="13" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="4849" fromTop="20" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:DefaultImageCompressor.cs" caret="742" fromTop="23" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:DefaultImageCompressor.cs" caret="294" fromTop="14" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:DefaultImageCompressor.cs" caret="535" fromTop="14" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:DefaultImageCompressor.cs" caret="452" fromTop="11" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:ImageCompression.cs" caret="82" fromTop="4" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/d:Services/f:ImageCompression.cs" caret="116" fromTop="6" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="36" fromTop="1" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="299" fromTop="12" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="557" fromTop="15" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="1390" fromTop="17" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:ImagePersistor.cs" caret="21" fromTop="0" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="850" fromTop="20" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:ImagePersistor.cs" caret="251" fromTop="10" />
+      <File id="2EB1546C-4ED7-40D6-96C4-2EF1A945BE9A/f:DefaultImagePersistor.cs" caret="801" fromTop="8" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="1522" fromTop="21" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="1054" fromTop="20" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="1054" fromTop="16" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="1375" fromTop="11" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="1092" fromTop="14" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="4074" fromTop="15" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="503" fromTop="3" />
+      <File id="32A16F67-E3BC-4828-9EBC-93D8C813F5B6/f:ImagePersistorSpecs.cs" caret="1054" fromTop="10" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.8\bin\net-2.0\</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>

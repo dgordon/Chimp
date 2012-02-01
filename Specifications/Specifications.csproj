@@ -50,13 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageCompressorSpecs.cs" />
     <Compile Include="ImagePersistorSpecs.cs" />
     <Compile Include="ImageTransformerSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="test picture.jpg" />
+    <Content Include="Images\test picture.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

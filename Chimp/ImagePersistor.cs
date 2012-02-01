@@ -5,11 +5,10 @@ using Chimp.Models;
 
 namespace Chimp
 {
-    public abstract class ImagePersistor
+    public interface ImagePersistor
     {
-        public abstract Image ImageFrom(Stream stream);
-
-        public abstract ImageDetails Save(Image image, DirectoryConfiguration directory);
-        public abstract void Delete(ImageDetails imageDetails);
+        Image ImageFrom(Stream stream);
+        ImageDetails Save(Image image,string filename, DirectoryConfiguration directory);
+        void Delete(ImageDetails imageDetails);
     }
 }
