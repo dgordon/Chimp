@@ -1,7 +1,0 @@
-﻿
-
-save image
-scale image within specified boundaries
-scale image to specified boundaries
-crop image
-rotate image

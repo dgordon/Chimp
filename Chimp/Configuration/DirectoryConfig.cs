@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Chimp.Configuration
 {
-    public interface DirectoryConfiguration
+    public interface DirectoryConfig
     {
         string Path { get; }
     }

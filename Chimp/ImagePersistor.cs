@@ -8,7 +8,7 @@ namespace Chimp
     public interface ImagePersistor
     {
         Image ImageFrom(Stream stream);
-        ImageDetails Save(Image image,string filename, DirectoryConfiguration directory);
-        void Delete(ImageDetails imageDetails);
+        ImageDetails Save(Image image,string filename, DirectoryConfig directory);
+        void Delete(string filename, DirectoryConfig directory);
     }
 }

@@ -25,9 +25,8 @@ namespace Chimp
             return Image.FromStream(stream);
         }
 
-        public ImageDetails Save(Image image, string filename, DirectoryConfiguration directory)
+        public ImageDetails Save(Image image, string filename, DirectoryConfig directory)
         {
-            //todo: refactor
             var imageFormat = ImageFormat.Jpeg;
             filename = string.Format("{0}.{1}", filename, imageFormat.ToString().ToLower());
 
@@ -36,15 +35,25 @@ namespace Chimp
 
             image.Save(Path.Combine(directory.Path, filename), encoder, encoderParams);
             
-            return new ImageDetails() 
+            return new ImageDetails
                             { 
                                 Name = filename 
                             };
         }
 
-        public void Delete(ImageDetails imageDetails)
+        public void Delete(string filename, DirectoryConfig directory)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(Path.Combine(directory.Path, filename)))
+                throw new FileNotFoundException();
+
+            var extension = filename.Split('.')[1];
+
+            var binDirectory = new DirectoryInfo(directory.Path);
+            foreach (var file in binDirectory.GetFiles("*." + extension, SearchOption.TopDirectoryOnly))
+            {
+                if(filename.Equals(file.Name, StringComparison.CurrentCultureIgnoreCase))
+                    file.Delete();
+            }
         }
     }
 }
