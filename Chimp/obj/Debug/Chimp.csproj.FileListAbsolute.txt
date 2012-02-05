@@ -1,5 +1,0 @@
-C:\_NET\Projects\Chimp\Chimp\obj\Debug\ResolveAssemblyReference.cache
-C:\_NET\Projects\Chimp\Chimp\bin\Debug\Chimp.dll
-C:\_NET\Projects\Chimp\Chimp\bin\Debug\Chimp.pdb
-C:\_NET\Projects\Chimp\Chimp\obj\Debug\Chimp.dll
-C:\_NET\Projects\Chimp\Chimp\obj\Debug\Chimp.pdb
