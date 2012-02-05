@@ -7,7 +7,11 @@ namespace Chimp.Services
 {
     public class DefaultImageTransformer:ImageTransformer
     {
-        public Image ResizeTo(Image image, int width, int height)
+        public Image ConstrainedScale(Image image, int width, int height)
+        {
+            return this.ConstrainedScale(image, width, height, Color.White);
+        }
+        public Image ConstrainedScale(Image image, int width, int height, Color canvasColor)
         {
             //original deminsions
             int sourceWidth = image.Width;
@@ -29,13 +33,13 @@ namespace Chimp.Services
             if (nPercentH < nPercentW)
             {
                 nPercent = nPercentH;
-                destX = System.Convert.ToInt16((width -
+                destX = Convert.ToInt16((width -
                               (sourceWidth * nPercent)) / 2);
             }
             else
             {
                 nPercent = nPercentW;
-                destY = System.Convert.ToInt16((height -
+                destY = Convert.ToInt16((height -
                               (sourceHeight * nPercent)) / 2);
             }
 
@@ -48,7 +52,7 @@ namespace Chimp.Services
                              image.VerticalResolution);
 
             Graphics grPhoto = Graphics.FromImage(bmPhoto);
-            grPhoto.Clear(Color.White);
+            grPhoto.Clear(canvasColor);
             grPhoto.InterpolationMode =
                    InterpolationMode.HighQualityBicubic;
 
@@ -59,19 +63,23 @@ namespace Chimp.Services
             grPhoto.Dispose();
             return bmPhoto;
         }
-        public Image ScaleTo(Image image, int width, int height)
+
+        public Image ProportionalScale(Image image, int width, int height)
+        {
+            return this.ProportionalScale (image, width, height, Color.Empty);
+        }
+        public Image ProportionalScale(Image image, int width, int height, Color canvasColor)
         {
             var ratio = Math.Min((float)width / (float)image.Width, (float)height / (float)image.Height);
             float destWidth = ratio * image.Width;
             float destHeight = ratio * image.Height;
 
-            Bitmap bmPhoto = 
+            Bitmap bmPhoto =
                 new Bitmap((int)destWidth, (int)destHeight, PixelFormat.Format24bppRgb);
-            bmPhoto.SetResolution(
-                image.HorizontalResolution, image.VerticalResolution);
+            bmPhoto.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
             Graphics grPhoto = Graphics.FromImage(bmPhoto);
-            grPhoto.Clear(Color.White);
+            grPhoto.Clear(canvasColor);
             grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
             grPhoto.DrawImage(image, 0, 0, destWidth, destHeight);
@@ -79,9 +87,9 @@ namespace Chimp.Services
             grPhoto.Dispose();
             return bmPhoto;
         }
-        public Image Crop(Image image, int x, int y, int width, int height)
-        {
-            return null;
-        }
+        //public Image Crop(Image image, int x, int y, int width, int height)
+        //{
+        //    return null;
+        //}
     }
 }

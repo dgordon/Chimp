@@ -4,8 +4,10 @@ namespace Chimp.Services
 {
     public interface ImageTransformer
     {
-        Image ResizeTo(Image image, int width, int height);
-        Image ScaleTo(Image image, int width, int height);
-        Image Crop(Image image, int x, int y, int width, int height);
+        Image ConstrainedScale(Image image, int width, int height);
+        Image ConstrainedScale(Image image, int width, int height, Color canvasColor);
+        Image ProportionalScale(Image image, int width, int height);
+        Image ProportionalScale(Image image, int width, int height, Color canvasColor);
+        //Image Crop(Image image, int x, int y, int width, int height);
     }
 }

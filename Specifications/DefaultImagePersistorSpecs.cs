@@ -11,7 +11,7 @@ using Chimp.Models;
 using Chimp.Configuration;
 using Chimp.Services;
 
-namespace Specifications.Services
+namespace DefaultImagePersistorSpecs
 {
     public class When_creating_image_from_stream
     {
@@ -61,10 +61,10 @@ namespace Specifications.Services
                                     var encoderParameters = new EncoderParameters(1);
                                     encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 60L);
 
-                                    A.CallTo(() => _imageCompression.GetImageCompressionParams())
+                                    A.CallTo(() => _imageCompression.CompressionParameters())
                                         .Returns(encoderParameters);
 
-                                    A.CallTo(() => _imageCompression.GetImageCodec())
+                                    A.CallTo(() => _imageCompression.CodecInfo())
                                         .Returns(ImageCodecInfo.GetImageDecoders()
                                             .FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid));
 
@@ -78,11 +78,11 @@ namespace Specifications.Services
                                     .MustHaveHappened(Repeated.Exactly.Once);
 
         It should_create_image_encode_parameters = () =>
-                                A.CallTo(() => _imageCompression.GetImageCompressionParams())
+                                A.CallTo(() => _imageCompression.CompressionParameters())
                                         .MustHaveHappened(Repeated.Exactly.Once);
 
         It should_get_image_codec = () =>
-                                A.CallTo(() => _imageCompression.GetImageCodec())
+                                A.CallTo(() => _imageCompression.CodecInfo())
                                         .MustHaveHappened(Repeated.Exactly.Once);
 
         It should_have_saved_the_image = () =>  File.Exists(Path.Combine(_directory.Path, _details.Name)).ShouldBeTrue();

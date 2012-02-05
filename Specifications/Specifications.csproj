@@ -50,8 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImagePersistorSpecs.cs" />
-    <Compile Include="ImageTransformerSpecs.cs" />
+    <Compile Include="DefaultImageCompressionSpecs.cs" />
+    <Compile Include="DefaultImagePersistorSpecs.cs" />
+    <Compile Include="DefaultImageTransformerSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
