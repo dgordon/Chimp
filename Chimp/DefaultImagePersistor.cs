@@ -30,8 +30,8 @@ namespace Chimp
             var imageFormat = ImageFormat.Jpeg;
             filename = string.Format("{0}.{1}", filename, imageFormat.ToString().ToLower());
 
-            var encoderParams = _imageCompression.GetImageCompressionParams(60L);
-            var encoder = _imageCompression.GetImageCodec(imageFormat);
+            var encoderParams = _imageCompression.GetImageCompressionParams();
+            var encoder = _imageCompression.GetImageCodec();
 
             image.Save(Path.Combine(directory.Path, filename), encoder, encoderParams);
             

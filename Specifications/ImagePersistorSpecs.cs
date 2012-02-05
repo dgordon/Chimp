@@ -25,7 +25,6 @@ namespace Specifications.Services
                                     A.CallTo(() => _directory.Path)
                                         .Returns(localPath);
 
-                                    //stream for testing only
                                     _stream = new MemoryStream();
                                     var image = Image.FromFile(localPath + "Images/test picture.jpg");
                                     image.Save(_stream, ImageFormat.Jpeg);
@@ -62,10 +61,10 @@ namespace Specifications.Services
                                     var encoderParameters = new EncoderParameters(1);
                                     encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 60L);
 
-                                    A.CallTo(() => _imageCompression.GetImageCompressionParams(A<long>._))
+                                    A.CallTo(() => _imageCompression.GetImageCompressionParams())
                                         .Returns(encoderParameters);
 
-                                    A.CallTo(() => _imageCompression.GetImageCodec(A<ImageFormat>._))
+                                    A.CallTo(() => _imageCompression.GetImageCodec())
                                         .Returns(ImageCodecInfo.GetImageDecoders()
                                             .FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid));
 
@@ -79,11 +78,11 @@ namespace Specifications.Services
                                     .MustHaveHappened(Repeated.Exactly.Once);
 
         It should_create_image_encode_parameters = () =>
-                                A.CallTo(() => _imageCompression.GetImageCompressionParams(A<long>._))
+                                A.CallTo(() => _imageCompression.GetImageCompressionParams())
                                         .MustHaveHappened(Repeated.Exactly.Once);
 
         It should_get_image_codec = () =>
-                                A.CallTo(() => _imageCompression.GetImageCodec(A<ImageFormat>._))
+                                A.CallTo(() => _imageCompression.GetImageCodec())
                                         .MustHaveHappened(Repeated.Exactly.Once);
 
         It should_have_saved_the_image = () =>  File.Exists(Path.Combine(_directory.Path, _details.Name)).ShouldBeTrue();
@@ -103,7 +102,6 @@ namespace Specifications.Services
         static Image _image;
         static ImageDetails _details;
     }
-    
     public class When_deleting_image
     {
         Establish context = () =>
@@ -141,42 +139,30 @@ namespace Specifications.Services
         static Image _image;
         static string _testFilename;
     }
-    
-    public class When_deletting_image_fails
+    public class When_deleting_image_and_the_file_is_not_found
     {
         Establish context = () =>
         {
-            //var uriPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            //_localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath + "Images";
-
             _directory = A.Fake<DirectoryConfig>();
             A.CallTo(() => _directory.Path)
                 .Returns("some/fake/path");
 
-            //_image = Image.FromFile(Path.Combine(_localPath, "test picture.jpg"));
-            _testFilename = "does not exist.jpeg";
-
-            //var encoderParameters = new EncoderParameters(1);
-            //encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 60L);
-
-            //var encoder = ImageCodecInfo.GetImageDecoders().FirstOrDefault(c => c.FormatID == ImageFormat.Jpeg.Guid);
-            //_image.Save(Path.Combine(_localPath, _testFilename), encoder, encoderParameters);
+            _testFilename = "test picture.jpeg";
 
             _imagePersistor = new DefaultImagePersistor(A.Fake<ImageCompression>());
         };
 
-        Because of = () => _imagePersistor.Delete(_testFilename, _directory);
+        Because of = () => _exception = Catch.Exception(() => _imagePersistor.Delete(_testFilename, _directory));
 
         It should_get_file_directory_location = () =>
             A.CallTo(() => _directory.Path).MustHaveHappened(Repeated.Exactly.Once);
 
-        It should_cause_an_error = () =>
-            A.CallTo(()=> _imagePersistor.Delete(A<string>._, A<DirectoryConfig>._))
-            .Throws(new FileNotFoundException());
-            //File.Exists(Path.Combine(_localPath, _testFilename)).ShouldBeFalse();
+        It should_error_when_file_is_not_found = () => _exception.ShouldBeOfType<FileNotFoundException>();
 
+        static Exception _exception;
         static DirectoryConfig _directory;
         static ImagePersistor _imagePersistor;
         static string _testFilename;
     }
+    //todo: possible specs due to file.IO exception(s) or Security exception(s)
 }
