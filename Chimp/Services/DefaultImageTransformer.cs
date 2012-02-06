@@ -14,14 +14,14 @@ namespace Chimp.Services
         public Image ConstrainedScale(Image image, int width, int height, Color canvasColor)
         {
             //original deminsions
-            int sourceWidth = image.Width;
-            int sourceHeight = image.Height;
-            int sourceX = 0;
-            int sourceY = 0;
+            var sourceWidth = image.Width;
+            var sourceHeight = image.Height;
+            var sourceX = 0;
+            var sourceY = 0;
 
             //new deminsions
-            int destX = 0;
-            int destY = 0;
+            var destX = 0;
+            var destY = 0;
 
             float nPercent = 0;
             float nPercentW = 0;
@@ -43,15 +43,15 @@ namespace Chimp.Services
                               (sourceHeight * nPercent)) / 2);
             }
 
-            int destWidth = (int)(sourceWidth * nPercent);
-            int destHeight = (int)(sourceHeight * nPercent);
+            var destWidth = (int)(sourceWidth * nPercent);
+            var destHeight = (int)(sourceHeight * nPercent);
 
-            Bitmap bmPhoto = new Bitmap(width, height,
+            var bmPhoto = new Bitmap(width, height,
                               PixelFormat.Format24bppRgb);
             bmPhoto.SetResolution(image.HorizontalResolution,
                              image.VerticalResolution);
 
-            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            var grPhoto = Graphics.FromImage(bmPhoto);
             grPhoto.Clear(canvasColor);
             grPhoto.InterpolationMode =
                    InterpolationMode.HighQualityBicubic;
@@ -64,18 +64,17 @@ namespace Chimp.Services
             return bmPhoto;
         }
 
-        public Image ProportionalScale(Image image, int width, int height)
+        public Image ProportionalScale(Image image, Size size)
         {
-            return this.ProportionalScale (image, width, height, Color.Empty);
+            return this.ProportionalScale (image, size, Color.Empty);
         }
-        public Image ProportionalScale(Image image, int width, int height, Color canvasColor)
+        public Image ProportionalScale(Image image, Size size, Color canvasColor)
         {
-            var ratio = Math.Min((float)width / (float)image.Width, (float)height / (float)image.Height);
-            float destWidth = ratio * image.Width;
-            float destHeight = ratio * image.Height;
+            var ratio = Math.Min((float)size.Width / (float)image.Width, (float)size.Height / (float)image.Height);
+            var destWidth = ratio * image.Width;
+            var destHeight = ratio * image.Height;
 
-            Bitmap bmPhoto =
-                new Bitmap((int)destWidth, (int)destHeight, PixelFormat.Format24bppRgb);
+            var bmPhoto = new Bitmap((int)destWidth, (int)destHeight, PixelFormat.Format24bppRgb);
             bmPhoto.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
             Graphics grPhoto = Graphics.FromImage(bmPhoto);
@@ -87,9 +86,11 @@ namespace Chimp.Services
             grPhoto.Dispose();
             return bmPhoto;
         }
-        //public Image Crop(Image image, int x, int y, int width, int height)
-        //{
-        //    return null;
-        //}
+        public Image Crop(Image image, int x, int y, Size size)
+        {
+            var cropArea = new Rectangle(x,y, size.Width, size.Height);
+            var bmpImage = new Bitmap(image);
+            return bmpImage.Clone(cropArea,bmpImage.PixelFormat);
+        }
     }
 }

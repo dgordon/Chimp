@@ -2,7 +2,7 @@
 *bin
 
 
-_Resharper.*
+_Resharper.Chimp*
 
 *.user
 *.suo
