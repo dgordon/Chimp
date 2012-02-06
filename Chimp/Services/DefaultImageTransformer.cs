@@ -51,24 +51,20 @@ namespace Chimp.Services
             bmPhoto.SetResolution(image.HorizontalResolution,
                              image.VerticalResolution);
 
-            var grPhoto = Graphics.FromImage(bmPhoto);
-            grPhoto.Clear(canvasColor);
-            grPhoto.InterpolationMode =
-                   InterpolationMode.HighQualityBicubic;
-
-            grPhoto.DrawImage(image,
-                new Rectangle(destX, destY, destWidth, destHeight),
-                new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight), GraphicsUnit.Pixel);
-
-            grPhoto.Dispose();
+            using (var grPhoto = Graphics.FromImage(bmPhoto))
+            {
+                grPhoto.Clear(canvasColor);
+                grPhoto.InterpolationMode =
+                    InterpolationMode.HighQualityBicubic;
+                grPhoto.DrawImage(image,
+                                  new Rectangle(destX, destY, destWidth, destHeight),
+                                  new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight), GraphicsUnit.Pixel);
+                grPhoto.Dispose();
+            }
             return bmPhoto;
         }
 
-        public Image ProportionalScale(Image image, Size size)
-        {
-            return this.ProportionalScale (image, size, Color.Empty);
-        }
-        public Image ProportionalScale(Image image, Size size, Color canvasColor)
+        public Image Resize(Image image, Size size)
         {
             var ratio = Math.Min((float)size.Width / (float)image.Width, (float)size.Height / (float)image.Height);
             var destWidth = ratio * image.Width;
@@ -77,13 +73,12 @@ namespace Chimp.Services
             var bmPhoto = new Bitmap((int)destWidth, (int)destHeight, PixelFormat.Format24bppRgb);
             bmPhoto.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
-            Graphics grPhoto = Graphics.FromImage(bmPhoto);
-            grPhoto.Clear(canvasColor);
-            grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-            grPhoto.DrawImage(image, 0, 0, destWidth, destHeight);
-
-            grPhoto.Dispose();
+            using (var grPhoto = Graphics.FromImage(bmPhoto))
+            {
+                grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                grPhoto.DrawImage(image, 0, 0, destWidth, destHeight);
+                grPhoto.Dispose();
+            }
             return bmPhoto;
         }
         public Image Crop(Image image, int x, int y, Size size)

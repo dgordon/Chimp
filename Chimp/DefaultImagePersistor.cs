@@ -34,10 +34,11 @@ namespace Chimp
             var encoder = _imageCompression.CodecInfo();
 
             image.Save(Path.Combine(directory.Path, filename), encoder, encoderParams);
-            
+
             return new ImageDetails
                             { 
-                                Name = filename 
+                                Name = filename,
+                                Size = new Size(image.Width,image.Height)
                             };
         }
 

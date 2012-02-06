@@ -38,7 +38,7 @@ namespace DefaultImageTransformerSpecs
         static Image _imageOrig;
         static Image _imageMod;
     }
-    public class When_scaling_an_image_proportionally
+    public class When_resizing_an_image
     {
         Establish context = () =>
         {
@@ -55,7 +55,7 @@ namespace DefaultImageTransformerSpecs
             _size = new Size(300, 100);
         };
 
-        Because of = () => _imageMod = _imageTransformer.ProportionalScale(_imageOrig, _size, Color.Empty);
+        Because of = () => _imageMod = _imageTransformer.Resize(_imageOrig, _size);
 
         It should_change_height = () => _imageMod.Height.ShouldBeLessThanOrEqualTo(_size.Height);
 

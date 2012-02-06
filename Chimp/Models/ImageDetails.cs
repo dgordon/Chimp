@@ -1,4 +1,6 @@
-﻿namespace Chimp.Models
+﻿using System.Drawing;
+
+namespace Chimp.Models
 {
     public class ImageDetails
     {
@@ -6,8 +8,8 @@
         /*
          * file size?
          * image type?
-         * image demensions?
          */
         public string Name { get; set; }
+        public Size Size { get; set; }
     }
 }
