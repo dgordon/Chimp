@@ -9,7 +9,7 @@ namespace DefaultImageCompressionSpecs
     {
         Establish context = () => _imageCompressor = new DefaultImageCompressor(100L, ImageFormat.Jpeg);
 
-        Because of = () => _encoderParams = _imageCompressor.CompressionParameters();
+        Because of = () => _encoderParams = _imageCompressor.EncoderParameters();
 
         It should_have_atleast_one_encoder_parameter = () => _encoderParams.Param.Any().ShouldBeTrue();
 
@@ -27,30 +27,30 @@ namespace DefaultImageCompressionSpecs
 
         Because of = () => _codecInfo = _imageCompressor.CodecInfo();
 
-        It should_return_correct_image_codec = () => _codecInfo.FormatID.ShouldEqual(_imageFormat.Guid);
+        It should_return_the_correct_image_codec = () => _codecInfo.FormatID.ShouldEqual(_imageFormat.Guid);
 
         static DefaultImageCompressor _imageCompressor;
         static ImageFormat _imageFormat;
         static ImageCodecInfo _codecInfo;
     }
-    public class When_setting_compression_level_above_one_hundred
+    public class When_the_compression_level_above_one_hundred
     {
         Establish context = () => _imageCompressor = new DefaultImageCompressor(5000L, ImageFormat.Jpeg);
 
         Because of = () => _compressionLevel = _imageCompressor.CompressionLevel;
 
-        It should_set_the_compression_level_to_one_hundred = () => _compressionLevel.ShouldEqual(100L);
+        It should_change_the_compression_level_to_one_hundred = () => _compressionLevel.ShouldEqual(100L);
 
         static DefaultImageCompressor _imageCompressor;
         static long _compressionLevel;
     }
-    public class When_setting_compression_level_below_zero
+    public class When_the_compression_level_below_zero
     {
         Establish context = () => _imageCompressor = new DefaultImageCompressor(-2345L, ImageFormat.Jpeg);
 
         Because of = () => _compressionLevel = _imageCompressor.CompressionLevel;
 
-        It should_set_the_compression_level_to_zero = () => _compressionLevel.ShouldEqual(0);
+        It should_change_the_compression_level_to_zero = () => _compressionLevel.ShouldEqual(0);
 
         static DefaultImageCompressor _imageCompressor;
         static long _compressionLevel;

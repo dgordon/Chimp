@@ -13,7 +13,7 @@ using Chimp.Services;
 
 namespace DefaultImagePersistorSpecs
 {
-    public class When_creating_image_from_stream
+    public class When_creating_an_image_from_a_file_stream
     {
         Establish context = () => 
                                 {
@@ -41,7 +41,7 @@ namespace DefaultImagePersistorSpecs
         static Image _image;
         static DirectoryConfig _directory;
     }
-    public class When_saving_image
+    public class When_saving_an_image
     {
         Establish context = () =>
                                 {
@@ -61,7 +61,7 @@ namespace DefaultImagePersistorSpecs
                                     var encoderParameters = new EncoderParameters(1);
                                     encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 60L);
 
-                                    A.CallTo(() => _imageCompression.CompressionParameters())
+                                    A.CallTo(() => _imageCompression.EncoderParameters())
                                         .Returns(encoderParameters);
 
                                     A.CallTo(() => _imageCompression.CodecInfo())
@@ -73,12 +73,12 @@ namespace DefaultImagePersistorSpecs
 
         Because of = () => _details = _imagePersistor.Save(_image, "test image saved", _directory);
 
-        It should_get_directory_path_for_image = () =>
+        It should_get_directory_path_where_the_will_be_saved = () =>
                                 A.CallTo(() => _directory.Path)
                                     .MustHaveHappened(Repeated.Exactly.Once);
 
-        It should_create_image_encode_parameters = () =>
-                                A.CallTo(() => _imageCompression.CompressionParameters())
+        It should_get_image_encoder_parameters = () =>
+                                A.CallTo(() => _imageCompression.EncoderParameters())
                                         .MustHaveHappened(Repeated.Exactly.Once);
 
         It should_get_image_codec = () =>
@@ -102,7 +102,7 @@ namespace DefaultImagePersistorSpecs
         static Image _image;
         static ImageDetails _details;
     }
-    public class When_deleting_image
+    public class When_deleting_an_image
     {
         Establish context = () =>
             {
@@ -139,7 +139,7 @@ namespace DefaultImagePersistorSpecs
         static Image _image;
         static string _testFilename;
     }
-    public class When_deleting_image_and_the_file_is_not_found
+    public class When_deleting_an_image_and_the_file_is_not_found
     {
         Establish context = () =>
         {

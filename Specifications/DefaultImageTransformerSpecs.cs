@@ -8,7 +8,7 @@ using Machine.Specifications;
 
 namespace DefaultImageTransformerSpecs
 {
-    public class When_scaling_an_image_constrained
+    public class When_scaling_an_image_within_a_constrained_area
     {
         Establish context = () =>
             {
@@ -28,9 +28,9 @@ namespace DefaultImageTransformerSpecs
 
         Because of = () => _imageMod = _imageTransformer.ConstrainedScale(_imageOrig, _width, _height, Color.Blue);
 
-        It should_change_height = () => _imageMod.Height.ShouldBeLessThanOrEqualTo(_height);
+        It should_change_height = () => _imageMod.Height.ShouldEqual(_height);
 
-        It should_change_width = () => _imageMod.Width.ShouldBeLessThanOrEqualTo(_width);
+        It should_change_width = () => _imageMod.Width.ShouldEqual(_width);
 
         static int _height;
         static int _width;
@@ -79,14 +79,14 @@ namespace DefaultImageTransformerSpecs
             _imageOrig.Save(stream, ImageFormat.Jpeg);
 
             _imageTransformer = new DefaultImageTransformer();
-            _size = new Size(20,50);
+            _size = new Size(266,244);
         };
 
-        Because of = () => _imageMod = _imageTransformer.Crop(_imageOrig, 10, 10, _size);
+        Because of = () => _imageMod = _imageTransformer.Crop(_imageOrig, 466, 198, _size);
 
-        It should_change_height = () => _imageMod.Height.ShouldEqual(_size.Height);
+        It should_crop_height = () => _imageMod.Height.ShouldEqual(_size.Height);
 
-        It should_change_width = () => _imageMod.Width.ShouldEqual(_size.Width);
+        It should_crop_width = () => _imageMod.Width.ShouldEqual(_size.Width);
 
         static Size _size;
         static ImageTransformer _imageTransformer;

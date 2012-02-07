@@ -5,32 +5,40 @@ namespace Chimp.Services
 {
     public abstract class ImageCompression
     {
-        protected long _compressionLevel;
-        protected ImageFormat _imageFormat;
+        private long _compressionLevel;
+        private readonly ImageFormat _imageFormat;
 
         protected ImageCompression(long compressionLevel, ImageFormat imageFormat)
         {
-            CompressionLevel = compressionLevel;
+            _compressionLevel = compressionLevel;
             _imageFormat = imageFormat;
         }
 
         protected virtual long CompressionLevel
         {
-            set
+            set { _compressionLevel = value; }
+            get
             {
-                if (value < 0)
-                    _compressionLevel = 0;
-                else if (value > 100)
-                    _compressionLevel = 100;
+                long val;
+                if (_compressionLevel < 0)
+                    val = 0;
+                else if (_compressionLevel > 100)
+                    val = 100;
                 else
-                _compressionLevel = value;
+                    val = _compressionLevel;
+
+                return val;
             }
         }
+        protected virtual ImageFormat ImageFormat
+        {
+            get { return _imageFormat; }
+        }
 
-        public virtual EncoderParameters CompressionParameters()
+        public virtual EncoderParameters EncoderParameters()
         {
             var encoderParameters = new EncoderParameters(1);
-            encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, _compressionLevel);
+            encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, CompressionLevel);
             return encoderParameters;
         }
         public virtual ImageCodecInfo CodecInfo()

@@ -9,11 +9,11 @@ namespace Chimp.Services
 
         public long CompressionLevel
         {
-            get { return _compressionLevel; }
+            get { return base.CompressionLevel; }
         }
         public ImageFormat ImageFormat
         {
-            get { return _imageFormat; }
+            get { return base.ImageFormat; }
         }
     }
 }
