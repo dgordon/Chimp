@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using Chimp.Services;
 using Chimp.Configuration;
@@ -27,8 +26,9 @@ namespace Chimp
 
         public ImageDetails Save(Image image, string filename, DirectoryConfig directory)
         {
-            var imageFormat = ImageFormat.Jpeg;
-            filename = string.Format("{0}.{1}", filename, imageFormat.ToString().ToLower());
+            filename = string.Format("{0}.{1}"
+                , filename
+                , _imageCompression.ImageFormat.ToString().ToLower());
 
             var encoderParams = _imageCompression.EncoderParameters();
             var encoder = _imageCompression.CodecInfo();

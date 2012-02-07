@@ -14,7 +14,7 @@ namespace Chimp.Services
             _imageFormat = imageFormat;
         }
 
-        protected virtual long CompressionLevel
+        public virtual long CompressionLevel
         {
             set { _compressionLevel = value; }
             get
@@ -30,7 +30,7 @@ namespace Chimp.Services
                 return val;
             }
         }
-        protected virtual ImageFormat ImageFormat
+        public virtual ImageFormat ImageFormat
         {
             get { return _imageFormat; }
         }

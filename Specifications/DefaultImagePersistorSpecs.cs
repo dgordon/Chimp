@@ -57,6 +57,8 @@ namespace DefaultImagePersistorSpecs
 
                                     _imagePersistor = A.Fake<ImagePersistor>();
                                     _imageCompression = A.Fake<ImageCompression>();
+                                    A.CallTo(() => _imageCompression.ImageFormat)
+                                        .Returns(ImageFormat.Jpeg);
 
                                     var encoderParameters = new EncoderParameters(1);
                                     encoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, 60L);
@@ -73,6 +75,9 @@ namespace DefaultImagePersistorSpecs
 
         Because of = () => _details = _imagePersistor.Save(_image, "test image saved", _directory);
 
+        It should_get_image_format = () =>
+                                A.CallTo(() => _imageCompression.ImageFormat)
+                                    .MustHaveHappened(Repeated.Exactly.Once);
         It should_get_directory_path_where_the_will_be_saved = () =>
                                 A.CallTo(() => _directory.Path)
                                     .MustHaveHappened(Repeated.Exactly.Once);
