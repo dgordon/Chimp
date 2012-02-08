@@ -26,7 +26,7 @@ namespace DefaultImagePersistorSpecs
                                         .Returns(localPath);
 
                                     _stream = new MemoryStream();
-                                    var image = Image.FromFile(localPath + "Images/test picture.jpg");
+                                    var image = Image.FromFile(localPath + "Images\\picture.jpg");
                                     image.Save(_stream, ImageFormat.Jpeg);
                                     
                                     _imagePersistor = new DefaultImagePersistor(A.Fake<ImageCompression>());
@@ -48,8 +48,8 @@ namespace DefaultImagePersistorSpecs
                                     var uriPath = 
                                         Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
 
-                                    var localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath + "Images";
-                                    _image = Image.FromFile(Path.Combine(localPath,"test picture.jpg"));
+                                    var localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath;
+                                    _image = Image.FromFile(Path.Combine(localPath, "Images\\picture.jpg"));
 
                                     _directory = A.Fake<DirectoryConfig>();
                                     A.CallTo(() => _directory.Path)
@@ -112,13 +112,13 @@ namespace DefaultImagePersistorSpecs
         Establish context = () =>
             {
                 var uriPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-                _localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath + "Images";
+                _localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath;
 
                 _directory = A.Fake<DirectoryConfig>();
                 A.CallTo(() => _directory.Path)
                     .Returns(_localPath);
 
-                _image = Image.FromFile(Path.Combine(_localPath ,"test picture.jpg"));
+                _image = Image.FromFile(Path.Combine(_localPath ,"Images\\picture.jpg"));
                 _testFilename = "delete me.jpeg";
 
                 var encoderParameters = new EncoderParameters(1);
@@ -152,7 +152,7 @@ namespace DefaultImagePersistorSpecs
             A.CallTo(() => _directory.Path)
                 .Returns("some/fake/path");
 
-            _testFilename = "test picture.jpeg";
+            _testFilename = "picture.jpeg";
 
             _imagePersistor = new DefaultImagePersistor(A.Fake<ImageCompression>());
         };

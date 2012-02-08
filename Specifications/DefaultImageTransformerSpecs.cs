@@ -17,23 +17,21 @@ namespace DefaultImageTransformerSpecs
                 var localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath;
 
                 var stream = new MemoryStream();
-                _imageOrig = Image.FromFile(localPath + "Images\\test picture.jpg");
+                _imageOrig = Image.FromFile(localPath + "Images\\picture.jpg");
                 _imageOrig.Save(stream, ImageFormat.Jpeg);
 
                 _imageTransformer = new DefaultImageTransformer();
 
-                _height = 100;
-                _width = 300;
+                _size = new Size(300, 100);
             };
 
-        Because of = () => _imageMod = _imageTransformer.ConstrainedScale(_imageOrig, _width, _height, Color.Blue);
+        Because of = () => _imageMod = _imageTransformer.ConstrainedScale(_imageOrig, _size, Color.Blue);
 
-        It should_change_height = () => _imageMod.Height.ShouldEqual(_height);
+        It should_change_height = () => _imageMod.Height.ShouldEqual(_size.Height);
 
-        It should_change_width = () => _imageMod.Width.ShouldEqual(_width);
+        It should_change_width = () => _imageMod.Width.ShouldEqual(_size.Width);
 
-        static int _height;
-        static int _width;
+        static Size _size;
         static ImageTransformer _imageTransformer;
         static Image _imageOrig;
         static Image _imageMod;
@@ -47,7 +45,7 @@ namespace DefaultImageTransformerSpecs
             var localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath;
 
             var stream = new MemoryStream();
-            _imageOrig = Image.FromFile(localPath + "Images\\test picture.jpg");
+            _imageOrig = Image.FromFile(localPath + "Images\\picture.jpg");
             _imageOrig.Save(stream, ImageFormat.Jpeg);
 
             _imageTransformer = new DefaultImageTransformer();
@@ -75,7 +73,7 @@ namespace DefaultImageTransformerSpecs
             var localPath = new Uri(uriPath.Remove(uriPath.IndexOf("bin"))).LocalPath;
 
             var stream = new MemoryStream();
-            _imageOrig = Image.FromFile(localPath + "Images\\test picture.jpg");
+            _imageOrig = Image.FromFile(localPath + "Images\\picture.jpg");
             _imageOrig.Save(stream, ImageFormat.Jpeg);
 
             _imageTransformer = new DefaultImageTransformer();

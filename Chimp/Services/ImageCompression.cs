@@ -1,3 +1,4 @@
+using System;
 using System.Drawing.Imaging;
 using System.Linq;
 
@@ -10,6 +11,9 @@ namespace Chimp.Services
 
         protected ImageCompression(long compressionLevel, ImageFormat imageFormat)
         {
+            if(imageFormat == null)
+                throw new ArgumentNullException();
+
             _compressionLevel = compressionLevel;
             _imageFormat = imageFormat;
         }

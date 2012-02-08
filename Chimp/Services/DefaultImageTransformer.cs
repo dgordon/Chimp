@@ -7,19 +7,20 @@ namespace Chimp.Services
 {
     public class DefaultImageTransformer:ImageTransformer
     {
-        public Image ConstrainedScale(Image image, int width, int height)
+        public Image ConstrainedScale(Image image, Size size)
         {
-            return this.ConstrainedScale(image, width, height, Color.White);
+            return this.ConstrainedScale(image, size, Color.White);
         }
-        public Image ConstrainedScale(Image image, int width, int height, Color canvasColor)
+        public Image ConstrainedScale(Image image, Size size, Color canvasColor)
         {
-            //original deminsions
+            /// code that I found a few years ago and wish I saved the URL to give the author credit.
+            //original dimensions
             var sourceWidth = image.Width;
             var sourceHeight = image.Height;
             var sourceX = 0;
             var sourceY = 0;
 
-            //new deminsions
+            //new dimensions
             var destX = 0;
             var destY = 0;
 
@@ -28,25 +29,25 @@ namespace Chimp.Services
             float nPercentH = 0;
 
             //calculate the percentage 
-            nPercentW = ((float)width / (float)sourceWidth);
-            nPercentH = ((float)height / (float)sourceHeight);
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+            nPercentH = ((float)size.Height / (float)sourceHeight);
             if (nPercentH < nPercentW)
             {
                 nPercent = nPercentH;
-                destX = Convert.ToInt16((width -
+                destX = Convert.ToInt16((size.Width -
                               (sourceWidth * nPercent)) / 2);
             }
             else
             {
                 nPercent = nPercentW;
-                destY = Convert.ToInt16((height -
+                destY = Convert.ToInt16((size.Height -
                               (sourceHeight * nPercent)) / 2);
             }
 
             var destWidth = (int)(sourceWidth * nPercent);
             var destHeight = (int)(sourceHeight * nPercent);
 
-            var bmPhoto = new Bitmap(width, height,
+            var bmPhoto = new Bitmap(size.Width, size.Height,
                               PixelFormat.Format24bppRgb);
             bmPhoto.SetResolution(image.HorizontalResolution,
                              image.VerticalResolution);
